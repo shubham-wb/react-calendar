@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ReactCalendar } from "./react-calendar";
 function App() {
   //date to be selected

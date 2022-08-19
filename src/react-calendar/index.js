@@ -1,8 +1,8 @@
-import "./styles.css";
-import { Calendar } from "./Calendar";
 import React, { useEffect, useState } from "react";
-import calendarIco from "./assets/calendar-icon.svg";
+import { Calendar } from "./Calendar";
 import { validate } from "./constants";
+import calendarIco from "./assets/calendar-icon.svg";
+import "./styles.css";
 export function ReactCalendar(props) {
   let [displayErr, showErrorMessage] = useState(false);
   let [dateInput, setDateInput] = useState("");
@@ -40,7 +40,7 @@ export function ReactCalendar(props) {
         {!props.multiple ? (
           <input
             type='text'
-            placeholder='DD-MM-YYYY'
+            placeholder='DD/MM/YYYY'
             value={dateInput}
             onChange={(e) => setDateInput(e.target.value)}
           ></input>
