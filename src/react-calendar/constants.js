@@ -1,3 +1,19 @@
+export const LABEL_DAYS = ["S", "M", "T", "W", "T", "F", "S"];
+export const LABEL_MONTHS = [
+  { title: "January", days_count: 31 },
+  { title: "February", days_count: 28 },
+  { title: "March", days_count: 31 },
+  { title: "April", days_count: 30 },
+  { title: "May", days_count: 31 },
+  { title: "June", days_count: 30 },
+  { title: "July", days_count: 31 },
+  { title: "August", days_count: 31 },
+  { title: "September", days_count: 30 },
+  { title: "October", days_count: 31 },
+  { title: "November", days_count: 30 },
+  { title: "December", days_count: 31 },
+];
+
 export function validate(dateString) {
   let dateformat = /^(0?[1-9]|[1-2][0-9]|3[01])[/](0?[1-9]|1[0-2])[/]\d{4}$/;
   // Match the date format through regular expression

@@ -1,20 +1,8 @@
-//props requirement
-/*
-1. a function to handle the date change 
-2. a  multiple  prop to indicate that we need to select multiple dates 
-3. unavailable dates to disable the dates which are not available right now 
-*/
-
-/*
-Design 
-there will be an input bar shown with a calendar icon 
-clicking on the calendar icon a component will be shown 
-*/
 import "./styles.css";
 import { Calendar } from "./Calendar";
 import React, { useEffect, useState } from "react";
-import calendarIco from "./assets/calendarIcon.svg";
-import { validate } from "./helpers/validate";
+import calendarIco from "./assets/calendar-icon.svg";
+import { validate } from "./constants";
 export function ReactCalendar(props) {
   let [displayErr, showErrorMessage] = useState(false);
   let [dateInput, setDateInput] = useState("");
@@ -22,7 +10,6 @@ export function ReactCalendar(props) {
   useEffect(() => {
     if (dateInput !== "") {
       showCalendar(false);
-
       const isValid = validate(dateInput);
       if (!isValid) {
         showErrorMessage(true);
@@ -33,16 +20,27 @@ export function ReactCalendar(props) {
       showErrorMessage(false);
     }
   }, [dateInput]);
+  useEffect(() => {
+    if (!props.multiple && props.date[0]) {
+      let date =
+        props.date[0].substring(0, 2) +
+        "/" +
+        props.date[0].substring(2, 4) +
+        "/" +
+        props.date[0].substring(4);
 
+      setDateInput(date);
+    }
+  }, [props.multiple, props.date]);
   const invalidDateMessage = "Invalid Date";
   return (
     <div className='react-calendar-wrapper'>
-      {calendar ? <Calendar /> : null}
+      {calendar ? <Calendar data={props} /> : null}
       <div className='react-calendar-input'>
         {!props.multiple ? (
           <input
             type='text'
-            placeholder='dd/mm/yy'
+            placeholder='DD-MM-YYYY'
             value={dateInput}
             onChange={(e) => setDateInput(e.target.value)}
           ></input>
